@@ -2,20 +2,12 @@
 
 namespace ZRay;
 
-
 class Composer {
-	private $zre = null;
-
-	public function setZRE($zre) {
-		$this->zre = $zre;
-	}
-
 	public function findFileWithExtensionExit($context, &$storage)
 	{
-		$storage['composerClassMap'][] = array(
+		$storage['classMap'][] = array(
 						'class' => $context['functionArgs'][0],
-						//'extension' => $context['functionArgs'][1],
-						'filename' => $context['returnValue']);
+						'filename' => str_replace(array('/', '\\'), DIRECTORY_SEPARATOR, $context['returnValue']));
 	}
 
 
@@ -37,16 +29,14 @@ class Composer {
 			if (!empty($package->homepage)) {
 				$entry['homepage'] = $package->homepage;
 			}
-			$storage['composerPackages'][$package->name] = $entry;
+			$storage['packages'][$package->name] = $entry;
 		}
 	}
-
 }
 
 $zre = new \ZRayExtension("composer");
 
 $zrayComposer = new Composer();
-$zrayComposer->setZRE($zre);
 
 $zre->setMetadata(array(
 	'logo' => __DIR__ . DIRECTORY_SEPARATOR . 'logo.png',
