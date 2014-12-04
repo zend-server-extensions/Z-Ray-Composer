@@ -20,7 +20,7 @@ class Composer {
 			$entry = [
 				'name'    => $package->name,
 				'version' => $package->version,
-				'source'  => $package->source->url,
+				'source'  => (isset($package->source) && isset($package->source->url)) ? $package->source->url : '',
 			];
 			$entry['requires'] = (empty($package->require) ? array() : (array) $package->require);
 			if (!empty($package->authors)) {
