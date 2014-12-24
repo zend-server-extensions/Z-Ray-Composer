@@ -1,4 +1,8 @@
 <?php
+/*********************************
+	Composer Z-Ray Extension
+	Version: 1.00
+**********************************/
 
 namespace ZRay;
 
