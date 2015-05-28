@@ -38,6 +38,10 @@ class Composer
 
         $json        = file_get_contents($jsonFile);
         $data        = json_decode($json);
+        
+        if(!is_array($data)) { 
+            return false;
+        }
 
         foreach ($data as $package) {
             $source = (isset($package->source) && isset($package->source->url))
